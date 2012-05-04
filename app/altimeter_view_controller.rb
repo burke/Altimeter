@@ -5,8 +5,7 @@ class AltimeterViewController < UIViewController
   def init
     self.locationManager = CLLocationManager.new.tap do |lm|
       lm.delegate = self
-      # How do I access kConstants in RM?
-      # lm.desired_accuracy = kCLLocationAccuracyBest
+      lm.desiredAccuracy = KCLLocationAccuracyBest
       lm.startUpdatingLocation
     end
     self
@@ -15,7 +14,7 @@ class AltimeterViewController < UIViewController
   def loadView
     self.view = UILabel.new.tap do |v|
       v.font = UIFont.systemFontOfSize 34
-      v.centersHorizontally = true
+      # v.centersHorizontally = true
     end
   end
 
@@ -29,7 +28,7 @@ class AltimeterViewController < UIViewController
   end; include LocationManagerDelegate
 
   def setAltitude altitude
-    view.text = "Altitude: #{altitude}"
+    view.text = "Altitude: #{altitude.to_i}"
   end
 
 end
